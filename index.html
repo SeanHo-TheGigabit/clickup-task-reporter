@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Reporter</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>ClickUp Task Reporter</h1>
+
+      <div class="form-container">
+        <div class="input-group">
+          <label for="api-key">ClickUp API Key:</label>
+          <input type="password" id="api-key" placeholder="Enter your ClickUp API key" />
+          <small class="help-text">Your API key is stored locally in your browser and never sent to any server except ClickUp.</small>
+        </div>
+
+        <div class="input-group">
+          <label for="clickup-id">ClickUp Task ID:</label>
+          <input type="text" id="clickup-id" placeholder="Enter ClickUp Task ID" />
+        </div>
+
+        <div class="input-group">
+          <label for="github-link">Github Link:</label>
+          <input type="text" id="github-link" placeholder="Enter Github Link" />
+        </div>
+      </div>
+
+      <div class="output-container">
+        <h2>Generated Report:</h2>
+        <textarea id="output-text" readonly></textarea>
+        <button id="copy-btn">Copy to Clipboard</button>
+        <div id="status-message" class="status-message"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
