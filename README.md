@@ -2,6 +2,8 @@
 
 A simple HTML/CSS/JS application that generates formatted task reports using ClickUp IDs and GitHub links. The application integrates with the ClickUp API to fetch real task names.
 
+![](./asset/homepage.png)
+
 ## Features
 
 - Input fields for ClickUp API Key, Task ID, and GitHub link
