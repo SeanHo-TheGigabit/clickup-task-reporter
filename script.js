@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const apiKeyInput = document.getElementById("api-key");
   const clickupIdInput = document.getElementById("clickup-id");
   const githubLinkInput = document.getElementById("github-link");
+  const reporterNameSelect = document.getElementById("reporter-name");
   const outputText = document.getElementById("output-text");
   const copyBtn = document.getElementById("copy-btn");
   const statusMessage = document.getElementById("status-message");
@@ -13,10 +14,17 @@ document.addEventListener("DOMContentLoaded", () => {
     apiKeyInput.value = savedApiKey;
   }
 
+  // Check for saved reporter name in localStorage
+  const savedReporterName = localStorage.getItem("reporter_name");
+  if (savedReporterName) {
+    reporterNameSelect.value = savedReporterName;
+  }
+
   // Add input event listeners
   apiKeyInput.addEventListener("input", handleApiKeyInput);
   clickupIdInput.addEventListener("input", validateAndGenerate);
   githubLinkInput.addEventListener("input", validateAndGenerate);
+  reporterNameSelect.addEventListener("change", handleReporterNameChange);
 
   // Copy to clipboard functionality
   copyBtn.addEventListener("click", copyToClipboard);
@@ -24,6 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Save API key to localStorage when changed
   function handleApiKeyInput() {
     localStorage.setItem("clickup_api_key", apiKeyInput.value.trim());
+    validateAndGenerate();
+  }
+
+  // Save reporter name to localStorage when changed
+  function handleReporterNameChange() {
+    localStorage.setItem("reporter_name", reporterNameSelect.value);
     validateAndGenerate();
   }
 
@@ -109,19 +123,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to generate the report with task data
   function generateReportWithTaskData(taskId, taskName, githubLink) {
+    // Get selected reporter name
+    const reporterName = reporterNameSelect.value;
+
     // Get current date and format as "13 Jul [Fri]"
     const now = new Date();
     const day = now.getDate();
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const month = monthNames[now.getMonth()];
     const weekday = dayNames[now.getDay()];
-    const dateLine = `${day} ${month} [${weekday}]`;
+    const year = now.getFullYear();
+    const dateLine = `${day} ${month} ${year} [${weekday}]`;
 
-    const formattedText = `${dateLine}
-#${taskId} - ${taskName}
-Github - ${githubLink}
-ClickUp - https://app.clickup.com/t/${taskId}`;
+    const formattedText = `#${taskId} - ${taskName}
+-  Github   : ${githubLink}
+-  ClickUp  : https://app.clickup.com/t/${taskId}
+-  Reporter: ${reporterName}
+-  Date     : ${dateLine}`;
 
     // Update output
     outputText.value = formattedText;

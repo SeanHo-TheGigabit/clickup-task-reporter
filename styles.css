@@ -41,7 +41,8 @@ label {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -51,7 +52,8 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+select:focus {
   border-color: #3498db;
   outline: none;
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
@@ -59,7 +61,8 @@ input[type="password"]:focus {
 
 /* Error styling for inputs */
 input[type="text"].error,
-input[type="password"].error {
+input[type="password"].error,
+select.error {
   border-color: #e74c3c;
   box-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
   background-color: rgba(231, 76, 60, 0.05);
