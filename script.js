@@ -109,7 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to generate the report with task data
   function generateReportWithTaskData(taskId, taskName, githubLink) {
-    const formattedText = `#${taskId} - ${taskName}
+    // Get current date and format as "13 Jul [Fri]"
+    const now = new Date();
+    const day = now.getDate();
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const month = monthNames[now.getMonth()];
+    const weekday = dayNames[now.getDay()];
+    const dateLine = `${day} ${month} [${weekday}]`;
+
+    const formattedText = `${dateLine}
+#${taskId} - ${taskName}
 Github - ${githubLink}
 ClickUp - https://app.clickup.com/t/${taskId}`;
 
