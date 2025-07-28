@@ -17,7 +17,7 @@ A simple HTML/CSS/JS application that generates formatted task reports using Cli
 ## Usage
 
 1. Open `index.html` in a web browser
-2. Enter your ClickUp API key (stored locally in your browser)
+2. Enter your ClickUp API key (stored locally in your browser) (Reference: [ClickUp API Key](https://help.clickup.com/hc/en-us/articles/6303426241687-Use-the-ClickUp-API#personal-api-key))
 3. Enter your ClickUp task ID
 4. Enter your GitHub link
 5. The report will automatically generate when all fields are filled
